@@ -7,13 +7,28 @@ public class exam031 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int k = sc.nextInt();
-        int[][] A = new int[N + 1][N + 1];
         int startIndex = 1;
         int endIndex = k;
+        int answer = 0;
 
         while (startIndex <= endIndex) {
             int mid = (startIndex + endIndex) / 2;
+            int divide = 0;
             int count = 0;
+
+            for (int i = 1; i <= N; i++) {
+                divide = mid / i;
+                if (divide < N) count += divide;
+                else count += N;
+            }
+
+            if (count < k) startIndex = mid + 1;
+            else {
+                endIndex = mid - 1;
+                answer = mid;
+            }
         }
+
+        System.out.println(answer);
     }
 }
